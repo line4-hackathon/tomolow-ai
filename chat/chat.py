@@ -53,14 +53,16 @@ def generateResponse(request:ChatRequest):
     
 # 분석 필요한 (데이터 불러온) 답변
 def getAnswerWithAnalysis(request: ChatRequest):
+    print("메서드 진입", flush=True)
     news_list = getNews(request)
+    print("뉴스 조회 완료", flush=True)
     batchCrawler = BatchCrawler(headless=True)
     resultDict = {}
     for news in news_list:
         url = news["url"]
-        print("크롤링 시작")
+        print("크롤링 시작", flush=True)
         result = batchCrawler.crawl(url, max_wait=3)
-        print("크롤링 완료")
+        print("크롤링 완료", flush=True)
         resultDict[url] = {
             "content" : result,
             "image_url" : news["image_url"]
