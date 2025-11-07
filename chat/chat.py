@@ -72,4 +72,9 @@ def getAnswerWithAnalysis(request: ChatRequest):
 def getAnswerWithoutAnalysis(question : str):
     return simpleAnswer(question)
 
+@app.post("/test")
+def test():
+    batchCrawler = BatchCrawler(headless=True)
+    return batchCrawler.crawl("https://coincu.com/340931-sec-reviews-ethereum-solana-etfs/?utm_source=snapi")
+
 

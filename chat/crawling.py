@@ -7,6 +7,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from readability import Document
 from bs4 import BeautifulSoup
+from fastapi import FastAPI
+
+app = FastAPI()
 
 
 CANDIDATE_SELECTORS = [   # 본문이 있을 법한 CSS 선택자
@@ -180,6 +183,7 @@ def crawl_with_driver(driver, url, max_wait=5):
     메인 함수
 """
 # ===== 단일 URL 크롤링 =====
+@app.post("/")
 def crawl(url, headless=True, proxy=None, max_wait=5):
     driver = get_driver(headless=headless, proxy=proxy)
     try:
