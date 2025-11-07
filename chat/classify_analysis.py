@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-from datetime import date
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
@@ -41,7 +40,7 @@ class Question(BaseModel):
     question: str
 
 @app.post("/")
-def classify_whether_analysis(question : Question):
+def classify_whether_analysis(question : str):
     response = client.chat.completions.create(
         model = "gpt-4o-mini",
         temperature=0,
@@ -52,7 +51,7 @@ def classify_whether_analysis(question : Question):
             },
             {
                 "role" : "user",
-                "content" : question.question
+                "content" : question
             }
         ]
     )
