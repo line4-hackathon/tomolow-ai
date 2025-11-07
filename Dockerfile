@@ -30,6 +30,6 @@ RUN playwright install chromium --with-deps
 COPY chat/ ./chat
 COPY ./.env .
 
-CMD ["uvicorn", "chat.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+CMD ["uvicorn", "chat.main:app", "--host", "0.0.0.0", "--port", "8000"]
 
 
