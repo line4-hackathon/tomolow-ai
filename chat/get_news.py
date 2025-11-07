@@ -31,6 +31,11 @@ def getNews(request : ChatRequest):
     response = requests.get(url, params=params)
 
     data = response.json()
+
+    if "data" not in data:
+        print("'data' key not found. API response : ", data)
+        return []
+    
     news_list = [
         {
             "url" : item["news_url"],
