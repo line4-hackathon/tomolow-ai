@@ -5,11 +5,9 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 from readability import Document
 from bs4 import BeautifulSoup
-from fastapi import FastAPI
-
-app = FastAPI()
 
 
 CANDIDATE_SELECTORS = [   # 본문이 있을 법한 CSS 선택자
@@ -111,8 +109,9 @@ def has_cloudflare_challenge(page_source):
 """
     특정 url 크롤링
 """
-def crawl_with_driver(driver, url, max_wait=5):
+def crawl_with_driver(driver, url, max_wait=10):
     try:
+        driver.set_page_load_timeout(max_wait)
         driver.get(url)
         
         # 1. <body> 대기
@@ -168,9 +167,13 @@ def crawl_with_driver(driver, url, max_wait=5):
         
         # 6. 폴백: 전체 페이지 readability
         return extract_by_readability(driver.page_source)
-        
+    
+    except TimeoutException:
+        print(f"[TIMEOUT] {url} (>{max_wait}s) → skip", flush=True)
+        return None
+    
     except Exception as e:
-        print(f"Crawl error: {e}")
+        print(f"Crawl error: {e}", flush=True)
         if driver:
             try:
                 return extract_by_readability(driver.page_source)
@@ -183,7 +186,6 @@ def crawl_with_driver(driver, url, max_wait=5):
     메인 함수
 """
 # ===== 단일 URL 크롤링 =====
-@app.post("/")
 def crawl(url, headless=True, proxy=None, max_wait=5):
     driver = get_driver(headless=headless, proxy=proxy)
     try:
