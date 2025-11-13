@@ -66,7 +66,9 @@ def getAnswerWithAnalysis(request: ChatRequest):
         print("크롤링 완료", flush=True)
         resultDict[url] = {
             "content" : result,
-            "image_url" : news["image_url"]
+            "image_url" : news["image_url"],
+            "title" : news["title"],
+            "source_name" : news["source_name"]
         }
         time.sleep(0.5)
     #batchCrawler.close()

@@ -16,6 +16,8 @@ Each news item contains:
 - News URL
 - Image URL
 - Article text (CONTENT)
+- Title
+- Source name
 
 After answering question, return a JSON containing only the list of URLs you referenced.
 
@@ -23,7 +25,7 @@ Return ONLY JSON in this exact form:
 {
     "answer" : "string",
     "sources" : [
-        { "url" : "string or null", "image_url" : "string or null" }
+        { "url" : "string or null", "image_url" : "string or null", "title" : "string", "source_name" : "string or null" }
     ]
 }
 
@@ -39,6 +41,7 @@ Rules:
 3. DO NOT hallucinate, DO NOT add unverified claims. Only state information explicitly supported by the news.
 4. If referencing multiple news articles, merge the narrative smoothly — do not list separate bullet points.
 5. If referring to a token symbol (e.g., ETH, BTC), keep the symbol unchanged.
+6. If you reference a news article, translate its TITLE into natural Korean and include the translated title inside the answer.
 """
 
 simple_system_prompt = """
@@ -71,6 +74,8 @@ def analyzeAndAnswer(question : str, newsDict : dict):
             f"URL: {url}\n"
             f"IMAGE_URL: {data.get('image_url')}\n"
             f"CONTENT:\n{data.get('content')}\n\n"
+            f"SOURCE_NAME:\n{data.get('source_name')}\n\n"
+            f"TITLE:\n{data.get('title')}\n\n"
         )
 
     news_text = "\n".join(news_blocks)
