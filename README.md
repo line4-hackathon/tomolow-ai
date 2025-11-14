@@ -34,7 +34,7 @@ TomoLow는 학습과 투자가 분리된 기존 구조를 개선하여, 사용�
 ![VS Code](https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white)  ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJ%20IDEA-000000?style=for-the-badge&logo=intellij-idea&logoColor=white)  ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)    ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)  ![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white)
 
 #### Frontend
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)  ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)  ![Vite](https://img.shields.io/badge/Vite-4B32C3?style=for-the-badge&logo=vite&logoColor=white) ![axios](https://img.shields.io/badge/axios-007ACC?style=for-the-badge&logo=axios&logoColor=white)
+ <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white"> <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white"> ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)  ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)  ![Vite](https://img.shields.io/badge/Vite-4B32C3?style=for-the-badge&logo=vite&logoColor=white) ![axios](https://img.shields.io/badge/axios-007ACC?style=for-the-badge&logo=axios&logoColor=white)
 
 
 #### Backend
@@ -93,16 +93,66 @@ TomoLow는 학습과 투자가 분리된 기존 구조를 개선하여, 사용�
 
 ```
 
-/src/main/java/com/hackathon/tomolow/domain
-├── auth/                   // 회원가입 + 로그인 관련
-├── candle/                 // 트레이딩 페이지용 캔들 조회
-├── chat/                   // 채팅 관련
-├── market/                 // 종목 관련
-├── ticker/                 // 실시간 시세 조회
-├── user/                   // 사용자 관련
-├── transaction/            // 사용자의 매수 + 매도 + 거래내역
-├── userGroup/              // 사용자가 가입한 그룹 관련
-├── group/                  // 그룹 관련
-└── userGroupTransaction    // 사용자의 그룹 내 매수 + 매도 + 거래 내역
+src
+ ┣ assets
+ ┃ ┣ font
+ ┃ ┣ icons
+ ┃ ┗ images
+ ┣ components
+ ┃ ┣ common
+ ┃ ┣ group
+ ┃ ┣ home
+ ┃ ┣ hometransaction
+ ┃ ┣ invest
+ ┃ ┣ learning
+ ┃ ┣ my
+ ┃ ┗ signup
+ ┣ contexts
+ ┃ ┣ AuthContext.jsx
+ ┃ ┗ TypeContext.jsx
+ ┣ hooks
+ ┃ ┣ select.js
+ ┃ ┗ useModal.jsx
+ ┣ pages
+ ┃ ┣ group
+ ┃ ┃ ┣ GroupCreatePage.jsx
+ ┃ ┃ ┣ GroupHoldingsPage.jsx
+ ┃ ┃ ┣ GroupHomePage.jsx
+ ┃ ┃ ┣ GroupListPage.jsx
+ ┃ ┃ ┣ GroupTransactionPage.jsx
+ ┃ ┃ ┗ GroupWaitingOrdersPage.jsx
+ ┃ ┣ home
+ ┃ ┃ ┗ HomePage.jsx
+ ┃ ┣ invest
+ ┃ ┃ ┣ api.js
+ ┃ ┃ ┣ CorrectionPage.jsx
+ ┃ ┃ ┣ PurchasePage.jsx
+ ┃ ┃ ┣ SearchPage.jsx
+ ┃ ┃ ┣ selectType.js
+ ┃ ┃ ┗ TradingPage.jsx
+ ┃ ┣ learning
+ ┃ ┃ ┣ ChatbotPage.jsx
+ ┃ ┃ ┣ HoldingStockPage.jsx
+ ┃ ┃ ┣ SaveChatPage.jsx
+ ┃ ┃ ┗ SelectDatePage.jsx
+ ┃ ┣ my
+ ┃ ┃ ┣ EditInfoPage.jsx
+ ┃ ┃ ┣ MoneyChargePage.jsx
+ ┃ ┃ ┣ MyPage.jsx
+ ┃ ┃ ┗ SavedChattingPage.jsx
+ ┃ ┗ signup
+ ┃ ┃ ┣ LandingPage.jsx
+ ┃ ┃ ┣ LoginPage.jsx
+ ┃ ┃ ┣ SignupPage1.jsx
+ ┃ ┃ ┗ SignupPage2.jsx
+ ┣ stores
+ ┃ ┣ groupStores.js
+ ┃ ┗ stockStores.js
+ ┣ styles
+ ┣ App.css
+ ┣ App.jsx
+ ┣ index.css
+ ┣ main.jsx
+ ┗ router.jsx
 
 ```
